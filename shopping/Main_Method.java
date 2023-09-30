@@ -55,16 +55,22 @@ class Shopping
 	
 	public void buyNow(OnlinePayment op, Account a, double productPrice) 
 	{
-		op.makePayment(productPrice, a);	 
-	}
-	
+		if(this.price==productPrice)
+		{
+			op.makePayment(productPrice, a);		
+		}else
+		{
+			System.out.println("invalid amount");
+		}	
+	}	
 }
 
 class Laptops extends Shopping
 {
 	Laptops(String name,double price)
 	{
-		super();
+		this.name=name;
+		this.price=price;
 	}
 }
 
@@ -72,9 +78,10 @@ class Mobiles extends Shopping
 {
 	Mobiles(String name,double price)
 	{
+		this.name=name;
+		this.price=price;
 	}
 }
-
 
 // MAIN METHOD ...
 public class Main_Method
@@ -87,9 +94,10 @@ public class Main_Method
 		
 		OnlinePayment op = new OnlinePayment();
 		              op.addToCart(500.0, 1);
-		              op.makePayment(500.0, account);
+//		              op.makePayment(500.0, account);
 		
 		Mobiles mobile = new Mobiles("Vivo", 500.0);
-		        mobile.buyNow(op, account,4500.0 );
+		        mobile.buyNow(op, account,500.0 );
+		        
 	}
 }
